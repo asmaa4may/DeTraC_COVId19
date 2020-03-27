@@ -45,11 +45,45 @@ of the COVID-19 cases from CXR images and as a consequence this can be contribut
 
 **Table 1:** the samples distribution in each class of chest X-ray dataset before and after class decomposition.
 
- |  original labels  |     norm       |        COVID_19       |     SARS       |
- | ------------      | ------------   |     ------------      |   ------------ |
- |    # instances    |     80         |           105         |        11      |        
- | Decomposed labels | norm_1| norm_2 | covid19_1 | covid19_2 | SARS_1| SARS_2 |
- |    # instances    |   441  |  279  |    666    |    283   |   63  |   36   |
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-wa1i{font-weight:bold;text-align:center;vertical-align:middle}
+.tg .tg-nrix{text-align:center;vertical-align:middle}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-wa1i">Original <br>Labels</th>
+    <th class="tg-wa1i" colspan="2">normal</th>
+    <th class="tg-wa1i" colspan="2">COVID_19</th>
+    <th class="tg-wa1i" colspan="2">SARS</th>
+  </tr>
+  <tr>
+    <td class="tg-nrix"># instances</td>
+    <td class="tg-nrix" colspan="2">80</td>
+    <td class="tg-nrix" colspan="2">105</td>
+    <td class="tg-nrix" colspan="2">11</td>
+  </tr>
+  <tr>
+    <td class="tg-wa1i">Decomposed<br>Labels</td>
+    <td class="tg-wa1i">norm_1</td>
+    <td class="tg-wa1i">norm_2</td>
+    <td class="tg-wa1i">COVID19_1</td>
+    <td class="tg-wa1i">COVID19_2</td>
+    <td class="tg-wa1i">SARS_1</td>
+    <td class="tg-wa1i">SARS_2</td>
+  </tr>
+  <tr>
+    <td class="tg-nrix"># instances</td>
+    <td class="tg-nrix">441</td>
+    <td class="tg-nrix">279</td>
+    <td class="tg-nrix">666</td>
+    <td class="tg-nrix">283</td>
+    <td class="tg-nrix">63</td>
+    <td class="tg-nrix">36</td>
+  </tr>
+</table>
 
 
 **Table 2:** COVID-19 classification obtained byDeTraC-ResNet18on chest X-rayimages.
