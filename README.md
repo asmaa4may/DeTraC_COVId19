@@ -1,11 +1,5 @@
 #   DeTraC_COVId19
 
-##        DeTraC COVID-19 classification in chest X-ray images 
-
-*Asmaa Abbas, Mohammed M. Abdelsamea, Mohamed Medhat Gaber21Mathematics **"Classification of COVID-19 in chest X-ray images usingDeTraC 
-deep convolutional neural network"**,2020*
-
-### Motivation
  Here, we validate and adopt our deep CNN approach, called Decompose, Transfer, and Compose (DeTraC), for the classification of COVID-19 chest X-ray images. DeTrac has achieved a high accuracy of 95.12% (with sensitivity of 97.91%, specificity of 91.87%, and precision of 93.36%) in the detection of COVID-19 X-ray images from normal, and severe acute respiratory syndrome cases. 
  
  
@@ -49,7 +43,7 @@ of the COVID-19 cases from CXR images and as a consequence this can be contribut
 
 
 ## Contact
-Please do not hesitate to contact us if you have any question. 
+Please do not hesitate to contact us if you have any question. asmaa.abbas@science.aun.edu.eg
 
 ## Citation
 
