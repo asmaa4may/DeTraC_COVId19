@@ -13,7 +13,7 @@
 % features_SARS    -----> noimages_SARS x 4096
 %
 % Output
-% Dataset B_ -------> [norm_1,norm_2,COVID19_1,COVID19_2, SARS_1,SARS_2]
+% Dataset B_ -------> [COVID19_1,COVID19_2, SARS_1,SARS_2,norm_1,norm_2]
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
