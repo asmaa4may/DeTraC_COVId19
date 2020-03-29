@@ -14,7 +14,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Input :
-%        Dataset B ----> [norm_1,norm_2,COVID19_1,COVID19_2, SARS_1,SARS_2]
+%        Dataset B ----> [COVID19_1,COVID19_2, SARS_1,SARS_2,norm_1,norm_2]
 % Output:
 %         evaluation performance for DeTraC model
 %         classifier_Accuracy      (ACC)
@@ -124,7 +124,7 @@ for i=1 : noimages
       [predictedlabels,scores] = classify(net,imdsTestSet);  
       [cmat,classNames] = confusionmat(imdsTestSet.Labels, predictedlabels); 
       cm = confusionchart(cmat,classNames);
-      sortClasses(cm,["normal_1","normal_2","Covid19_1","Covid19_2","SARS_1","SARS_2"])
+      sortClasses(cm,["Covid19_1","Covid19_2","SARS_1","SARS_2","normal_1","normal_2"])
       cmat=cm.NormalizedValues;
      
       %%  error correction equations
@@ -135,7 +135,7 @@ for i=1 : noimages
       
        K=2;           
        
-       org_classNames= {'normal','Covid','SARS'};
+       org_classNames= {'Covid','SARS','normal'};
        org_classNames= categorical(org_classNames);
        org_classNum = numel(org_classNames);
        
