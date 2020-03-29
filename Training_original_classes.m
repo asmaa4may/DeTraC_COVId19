@@ -150,7 +150,7 @@ for i=1 : noimages
    
     [cmat,classNames] = confusionmat(testimages.Labels, predictedlabels); 
     cm = confusionchart(cmat,classNames);
-    sortClasses(cm,["normal","COVID_19", "SARS"])
+    sortClasses(cm,["COVID_19", "SARS","normal"])
     cmat=cm.NormalizedValues;
 
     %% compute some statistic parameters 
