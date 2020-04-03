@@ -21,7 +21,7 @@
 %         classifier_sensitivity   (SN) 
 %         classifier_specifity     (SP)
 %         classifier_specifity     (PPV)
-%         The Area Under the Curve (ACC)
+%         The Area Under the Curve (AUC)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% load images
