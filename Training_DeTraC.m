@@ -130,15 +130,13 @@ for i=1 : noimages
       %%  error correction equations
       % CompositionClasses : containes reassembling each sub-classes into the original class
       % K                  : class decomposition factor
-      % org_classNames     : clase name in dataset_A before decomposition process 
+      % org_classNames     : original classes in dataset_A before decomposition process 
       
        K=2; 
-       
        CompositionClasses= blockproc(cmat,[k k],@(block_struct) sum(block_struct.data(:)));
        org_classNames= categorical({'Covid','SARS','normal'});
-       org_classNum = numel(org_classNames);
-          
-      [acc, sn, sp, ppv]= ConfusionMat_MultiClass (CompositionClasses,org_classNum);
+                 
+      [acc, sn, sp, ppv]= ConfusionMat_MultiClass (CompositionClasses,org_classNames);
       
        %% creates a table from the input variables
        Evaluation_Table(i,:) = table({filename},acc,sn,sp,ppv);
