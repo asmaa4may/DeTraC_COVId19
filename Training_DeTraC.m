@@ -128,25 +128,20 @@ for i=1 : noimages
       cmat=cm.NormalizedValues;
      
       %%  error correction equations
-      % K        : class decomposition compontent  
-      % org_classNames : clase name in dataset_A before decomposition
-      % process
-      % classNum : the number of new classes after decomposition process 
+      % CompositionClasses : containes reassembling each sub-classes into the original class
+      % K                  : class decomposition factor
+      % org_classNames     : clase name in dataset_A before decomposition process 
       
-       K=2;           
+       K=2; 
        
-       org_classNames= {'Covid','SARS','normal'};
-       org_classNames= categorical(org_classNames);
+       CompositionClasses= blockproc(cmat,[k k],@(block_struct) sum(block_struct.data(:)));
+       org_classNames= categorical({'Covid','SARS','normal'});
        org_classNum = numel(org_classNames);
-       
-      % reassembling each sub-classes into the original class
-       
-      [cmat_ErrorCor]= MultiClass_ErrorCorrection(cmat,org_classNum);
-      
-      [acc, sn, sp, p]= ConfusionMat_MultiClass (cmat_ErrorCor,org_classNum);
+          
+      [acc, sn, sp, ppv]= ConfusionMat_MultiClass (CompositionClasses,org_classNum);
       
        %% creates a table from the input variables
-       Evaluation_Table(i,:) = table({filename},acc,sn,sp,p);
+       Evaluation_Table(i,:) = table({filename},acc,sn,sp,ppv);
         
 end
                    
