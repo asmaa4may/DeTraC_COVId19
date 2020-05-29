@@ -124,7 +124,7 @@ for i=1 : noimages
       [predictedlabels,scores] = classify(net,imdsTestSet);  
       [cmat,classNames] = confusionmat(imdsTestSet.Labels, predictedlabels); 
       cm = confusionchart(cmat,classNames);
-      sortClasses(cm,["Covid19_1","Covid19_2","SARS_1","SARS_2","normal_1","normal_2"])
+      sortClasses(cm,["Covid_1","Covid_2","SARS_1","SARS_2","normal_1","normal_2"])
       cmat=cm.NormalizedValues;
      
       %%  error correction equations
