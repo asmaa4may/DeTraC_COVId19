@@ -1,10 +1,10 @@
-function [all_ACC,all_sn, all_sp, all_ppv ] = ConfusionMat_MultiClass(cmat,classNames)
+function [all_ACC,all_sn, all_sp, all_ppv ] = ConfusionMat_MultiClass(cmat,org_classNames)
 
-classNum = numel(classNames) ;
+classNum = numel(org_classNames) ;
 ACC_Class=zeros(1,classNum);       % Accuracy
 SN_Class=zeros(1,classNum);        % Sensitivity
 SP_Class=zeros(1,classNum);        % Specificity
-ppv_class=zeros(1,classNum);       % precision
+ppv_Class=zeros(1,classNum);       % precision
 
 
 
