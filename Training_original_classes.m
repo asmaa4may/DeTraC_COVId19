@@ -154,10 +154,15 @@ for i=1 : noimages
     cmat=cm.NormalizedValues;
 
     %% compute some statistic parameters 
-   [acc, sn, sp, p]= ConfusionMat_MultiClass (cmat,classNames);
+   [acc, sn, sp, ppv]= ConfusionMat_MultiClass (cmat,classNames);
+ 
+   classifier_Accuracy     = acc;
+   classifier_sensitivity  = sn ; 
+   classifier_specifity    = sp ;
+   classifier_specifity    = ppv ;
    
     %% creates a table from the input variables
-     Evaluation_Table(i,:) = table({filename},acc, sn, sp, p);
+     Evaluation_Table(i,:) = table({filename},acc, sn, sp, ppv);
      
        
 end
