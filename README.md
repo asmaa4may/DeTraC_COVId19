@@ -1,6 +1,6 @@
 #   DeTraC_COVId19
 
- Here, we validate and adopt our deep CNN approach, called Decompose, Transfer, and Compose (DeTraC), for the classification of COVID-19 chest X-ray images. DeTrac has achieved a high accuracy of 95.12% (with sensitivity of 97.91%, specificity of 91.87%, and precision of 93.36%) in the detection of COVID-19 X-ray images from normal, and severe acute respiratory syndrome cases. 
+ Here, we validate and adopt our deep CNN approach, called Decompose, Transfer, and Compose (DeTraC), for the classification of COVID-19 chest X-ray images. DeTrac has achieved a high accuracy of 97.35% (with sensitivity of 98.23% and specificity of 96.34%) in the detection of COVID-19 X-ray images from normal, and severe acute respiratory syndrome cases. 
  
  
 ## **Dataset description**
@@ -28,14 +28,14 @@ Matlab R2019a - window 8 or later version
 
 ## **Results**
 
-DeTraC_COVID19 achieved high accuracy of 95.12% which proved that CNNs have an effective and robust solution for the detection 
+DeTraC_COVID19 achieved high accuracy of 97.35% which proved that CNNs have an effective and robust solution for the detection 
 of the COVID-19 cases from CXR images and as a consequence this can be contributed to control the spread of the disease.
 
 
-**Table 1:** COVID-19 classification obtained byDeTraC-ResNet18on chest X-rayimages.
-|  Accuracy | Sensitivity  |  Specificity |  Precision |
-| ------------ | ------------ | ------------ | ------------ |
-|  95.12%      | 97.91%      |      91.87%  |  93.36% |
+**Table 1:** COVID-19 classification obtained byDeTraC-Vgg19 on chest X-rayimages.
+|  Accuracy | Sensitivity  |  Specificity | 
+| ------------ | ------------ | ------------ |
+|  97.35%      | 98.23%      |      96.34%  |  
 
  Fig: the learning curve accuracy and loss between training and test sets.
 
