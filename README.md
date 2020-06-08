@@ -39,7 +39,7 @@ of the COVID-19 cases from CXR images and as a consequence this can be contribut
 
  Fig: the learning curve accuracy and loss between training and test sets.
 
-![1](https://github.com/asmaa4may/DeTraC_COVId19/blob/master/images/Learning%20curve.png ) 
+![1](https://github.com/asmaa4may/DeTraC_COVId19/blob/master/images/Learningcurve.PNG ) 
 
 
 ## Contact
