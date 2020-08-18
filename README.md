@@ -49,9 +49,9 @@ Please do not hesitate to contact us if you have any question. asmaa.abbas@scien
 
  If you used DeTraC and found it useful, please cite the following papers:
  
- •	Abbas A, Abdelsamea MM, Gaber MM. DeTraC: **Transfer Learning of Class Decomposed Medical Images in Convolutional Neural Networks. under review** 2020.
+ •	Abbas A, Abdelsamea MM, Gaber MM. DeTraC: **Transfer Learning of Class Decomposed Medical Images in Convolutional Neural Networks. IEEE Access** 2020. ( https://ieeexplore.ieee.org/document/9075155?source=authoralert)
  
- •	Abbas A, Abdelsamea MM, Gaber MM. **Classification of COVID-19 in chest X-ray images usingDeTraC deep convolutional neural network. under review** 2020.
+ •	Abbas A, Abdelsamea MM, Gaber MM. **Classification of COVID-19 in chest X-ray images usingDeTraC deep convolutional neural network. to peer review** 2020.
 
 
  
