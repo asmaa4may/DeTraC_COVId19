@@ -51,8 +51,7 @@ Please do not hesitate to contact us if you have any question. asmaa.abbas@scien
  
  •	Abbas A, Abdelsamea MM, Gaber MM. DeTraC: **Transfer Learning of Class Decomposed Medical Images in Convolutional Neural Networks. IEEE Access** 2020. ( https://ieeexplore.ieee.org/document/9075155?source=authoralert)
  
- •	Abbas A, Abdelsamea MM, Gaber MM. **Classification of COVID-19 in chest X-ray images usingDeTraC deep convolutional neural network. to peer review** 2020.
-
+ •	Abbas A, Abdelsamea MM, Gaber MM. **Classification of COVID-19 in chest X-ray images usingDeTraC deep convolutional neural network. Applied Intelligence, to appear** 2020.
 
  
 ## License
