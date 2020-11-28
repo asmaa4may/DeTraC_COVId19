@@ -1,7 +1,9 @@
 %%%%%%%%%%%%%%%% Extract the learned Features from each image Using CNN 
 
-% load the checkpointtrained network that can be descriminated between the three
-% classes and determine the layer we want to extract the features form it
+% load the checkpointtrained network that could be descriminated between the three
+% classes. 
+% Determine the layer number and the number of features. 
+%In our work laye= AlexNet and FeaturesNum=4096 .
 % load the images within each class and store each one as imageDatastore 
 % specify two separeted variables for each class to contain the activations
 % features from the ith image.
@@ -16,13 +18,14 @@
 
 %% load previous pre-training work
 load('net_checkpoint__...........................') 
-layer = 'fc7';
+layer=net.Layers(end-2);            
+FeaturesNum=(layer.InputSize);
 
 %% %%%%%%%%%%%%%%%% load covide_19 images%%%%%%%%%%%%%%%%
 covide19_images=dir('E:\.................\dataset_A\Covid_19\*.png');
 noimages_covide19=length(covide19_images);
 
-features_covide19=zeros(noimages_covide19,4096);   
+features_covide19=zeros(noimages_covide19,FeaturesNum);   
   
 for i=1 : noimages_covide19
     
@@ -41,7 +44,7 @@ end
 normal_images=dir('E:\.................\dataset_A\normal\*.png');
 noimages_norm=length(normal_images);
 
-features_normal=zeros(noimages_norm,4096);  
+features_normal=zeros(noimages_norm,FeaturesNum);  
 
  for j=1 : noimages_norm
     
@@ -60,7 +63,7 @@ features_normal=zeros(noimages_norm,4096);
 SARS_images=dir('E:\.................\dataset_A\SARS\*.png');
 noimages_SARS=length(SARS_images);
 
-features_SARS=zeros(noimages_SARS,4096);  
+features_SARS=zeros(noimages_SARS,FeaturesNum);  
 
  for j=1 : noimages_SARS
     
