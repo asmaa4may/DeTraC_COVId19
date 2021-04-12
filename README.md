@@ -2,19 +2,19 @@
 
 ## Usage
 
-Before running the script, run ```pip install -r requirements.txt``` so that you can install all the necessary dependencies. Also, make sure that you are located in the ```src``` directory inside the ```DeTraC``` folder.
+Before running the script, run ```pip3 install -r requirements.txt``` so that you can install all the necessary dependencies. Also, make sure that you are located in the ```src``` directory inside the ```DeTraC``` folder.
 
 A key aspect to keep in mind is that this script can be used with either a TensorFlow backend, or a PyTorch backend. Regardless of the chosen framework, the results should be the same. 
 
 To select a framework use the ```-f``` flag, followed by the framework of choice:
 ```bash
-python detrac.py -f tf
+python3 detrac.py -f tf
 ```
 
 OR
 
 ```bash
-python detrac.py -f torch
+python3 detrac.py -f torch
 ```
 
 This script consists of two elements:
