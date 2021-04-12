@@ -24,7 +24,10 @@ This script consists of two elements:
     ```bash
     python detrac.py -f <FRAMEWORK> --train --epochs <NUMBER_OF_EPOCHS> --num_classes <NUMBER_OF_CLASSES> --batch_size <BATCH_SIZE> --folds <NUMBER_OF_FOLDS> --k <NUMBER_OF_CLUSTER(K-Means)> --lr <FEATURE_EXTRACTOR_LR> <FEATURE_COMPOSER_LR>
     ```
-
+- Example of training:
+```bash
+    sudo python3 detrac.py -f torch --train --epochs 1 --num_classes 3 --batch_size 16 --folds 2 --k 2 --lr 0.001 0.001
+```
 - Inference
     ```bash
     python detrac.py -f <FRAMEWORK> --infer
