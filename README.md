@@ -26,7 +26,7 @@ This script consists of two elements:
     ```
 - Example of training:
 ```bash
-    sudo python3 detrac.py -f torch --train --epochs 1 --num_classes 3 --batch_size 16 --folds 2 --k 2 --lr 0.001 0.001
+    python3 detrac.py -f torch --train --epochs 1 --num_classes 3 --batch_size 16 --folds 2 --k 2 --lr 0.001 0.001
 ```
 - Inference
     ```bash
