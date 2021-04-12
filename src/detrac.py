@@ -7,6 +7,7 @@ import numpy as np
 import os
 
 # Paths where data is stored
+DATA_FOLDER_PATH = "../data"
 INITIAL_DATASET_PATH = "../data/initial_dataset"
 EXTRACTED_FEATURES_PATH = "../data/extracted_features"
 COMPOSED_DATASET_PATH = "../data/composed_dataset"
@@ -221,10 +222,12 @@ def init_folders(path: str) -> bool:
 
 def main():
     fresh_directories = [
+        init_folders(DATA_FOLDER_PATH),
         init_folders(INITIAL_DATASET_PATH),
         init_folders(EXTRACTED_FEATURES_PATH),
         init_folders(COMPOSED_DATASET_PATH),
         init_folders(GENERAL_MODELS_PATH),
+        init_folders(TF_MODEL_DIR),
         init_folders(TF_MODEL_DETAILS_DIR)
     ]
 
