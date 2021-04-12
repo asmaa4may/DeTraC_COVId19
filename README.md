@@ -17,6 +17,8 @@ OR
 python3 detrac.py -f torch
 ```
 
+For example data, you can use this link: https://www.kaggle.com/prashant268/chest-xray-covid19-pneumonia
+
 This script consists of two elements:
 - Training:
     ```bash
