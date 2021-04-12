@@ -92,7 +92,7 @@ def preprocess_images(
 
     # Check if folders exist
     for folder in os.listdir(dataset_path):
-        assert os.path.isdir(os.path.join(dataset_path, folder))
+        assert os.path.isdir(os.path.join(dataset_path, folder)) #if error shows here, remove .DS_store from data file, MacOS creates that hidden file
         class_names.append(folder)
 
     # For every folder in the dataset path
