@@ -2,6 +2,33 @@
 
 ## Usage
 
+## Install guide
+
+1. Go to main folder and install requirements ```pip3 install -r requirements.txt``` 
+2. Locate to *src* folder and run TensorFlow or PyTorch backend:
+```bash
+python3 detrac.py -f tf
+```
+
+OR
+
+```bash
+python3 detrac.py -f torch
+```
+3. For adding data, go to root folder -> data -> inital_dataset -> add data here
+4. Run a training script:
+    ```bash
+    python detrac.py -f <FRAMEWORK> --train --epochs <NUMBER_OF_EPOCHS> --num_classes <NUMBER_OF_CLASSES> --batch_size <BATCH_SIZE> --folds <NUMBER_OF_FOLDS> --k <NUMBER_OF_CLUSTER(K-Means)> --lr <FEATURE_EXTRACTOR_LR> <FEATURE_COMPOSER_LR>
+    ```
+- Example of training:
+```bash
+    python3 detrac.py -f torch --train --epochs 1 --num_classes 3 --batch_size 16 --folds 2 --k 2 --lr 0.001 0.001
+```
+
+
+
+---
+
 Before running the script, run ```pip3 install -r requirements.txt``` so that you can install all the necessary dependencies. Also, make sure that you are located in the ```src``` directory inside the ```DeTraC``` folder.
 
 A key aspect to keep in mind is that this script can be used with either a TensorFlow backend, or a PyTorch backend. Regardless of the chosen framework, the results should be the same. 
