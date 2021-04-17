@@ -3,7 +3,7 @@
 ## Install guide
 This is simple installation guide:
 
-1. Go to main folder and install requirements ```pip3 install -r requirements.txt```. This will install all the requirements on your PC that are located in *requirements.txt* folder.
+1. Go to main folder and install requirements with ```pip3 install -r requirements.txt```. This will install all the requirements on your PC that are located in *requirements.txt* folder.
 
 2. Locate to *src* folder and run TensorFlow or PyTorch backend. <br/>
 * TensorFlow:
