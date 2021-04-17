@@ -6,12 +6,11 @@
 
 1. Go to main folder and install requirements ```pip3 install -r requirements.txt```. This will install all the requirements on your PC that are located in *requirements.txt* folder.
 
-2. Locate to *src* folder and run TensorFlow or PyTorch backend.
+2. Locate to *src* folder and run TensorFlow or PyTorch backend. <br/>
 TensorFlow:
 ```bash
 python3 detrac.py -f tf
 ```
-OR
 PyTorch:
 ```bash
 python3 detrac.py -f torch
