@@ -1,7 +1,5 @@
 # [DeTraC](https://arxiv.org/pdf/2003.13815.pdf)
 
-## Usage
-
 ## Install guide
 This is simple installation guide:
 
