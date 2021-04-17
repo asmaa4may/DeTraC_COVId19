@@ -4,18 +4,34 @@
 
 ## Install guide
 
-1. Go to main folder and install requirements ```pip3 install -r requirements.txt``` 
-2. Locate to *src* folder and run TensorFlow or PyTorch backend:
+1. Go to main folder and install requirements ```pip3 install -r requirements.txt```. This will install all the requirements on your PC that are located in *requirements.txt* folder.
+
+2. Locate to *src* folder and run TensorFlow or PyTorch backend.
+TensorFlow:
 ```bash
 python3 detrac.py -f tf
 ```
-
 OR
-
+PyTorch:
 ```bash
 python3 detrac.py -f torch
 ```
-3. For adding data, go to root folder -> data -> inital_dataset -> add data here
+Once you run any of those commands, local folders will be created. I recommend using PyTorch backend, it seems a bit more accurate and faster. 
+
+3. For adding data, follow the structure from bellow. 
+```
+DeTraC_COVId19
+│
+└─── data
+│   └─── initial_dataset
+│       └─── COVID19
+│       │   └─── COVID19 images
+│       └─── NORMAL
+│       │   └─── NORMAL images
+│       └─── PNEUMONIA
+│       │   └─── PNEUMONIA images
+```
+
 4. Run a training script:
     ```bash
     python detrac.py -f <FRAMEWORK> --train --epochs <NUMBER_OF_EPOCHS> --num_classes <NUMBER_OF_CLASSES> --batch_size <BATCH_SIZE> --folds <NUMBER_OF_FOLDS> --k <NUMBER_OF_CLUSTER(K-Means)> --lr <FEATURE_EXTRACTOR_LR> <FEATURE_COMPOSER_LR>
