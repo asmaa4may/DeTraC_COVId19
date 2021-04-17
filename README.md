@@ -3,6 +3,7 @@
 ## Usage
 
 ## Install guide
+This is simple installation guide:
 
 1. Go to main folder and install requirements ```pip3 install -r requirements.txt```. This will install all the requirements on your PC that are located in *requirements.txt* folder.
 
@@ -41,50 +42,9 @@ You can use this dataset for testing: [Kaggle](https://www.kaggle.com/prashant26
     python3 detrac.py -f torch --train --epochs 1 --num_classes 3 --batch_size 16 --folds 2 --k 2 --lr 0.001 0.001
 ```
 
-
+Now everything should be setup! Have a look down for more information.
 
 ---
-
-Before running the script, run ```pip3 install -r requirements.txt``` so that you can install all the necessary dependencies. Also, make sure that you are located in the ```src``` directory inside the ```DeTraC``` folder.
-
-A key aspect to keep in mind is that this script can be used with either a TensorFlow backend, or a PyTorch backend. Regardless of the chosen framework, the results should be the same. 
-
-To select a framework use the ```-f``` flag, followed by the framework of choice:
-```bash
-python3 detrac.py -f tf
-```
-
-OR
-
-```bash
-python3 detrac.py -f torch
-```
-
-For example data, you can use this link: https://www.kaggle.com/prashant268/chest-xray-covid19-pneumonia
-
-This script consists of two elements:
-- Training:
-    ```bash
-    python detrac.py -f <FRAMEWORK> --train --epochs <NUMBER_OF_EPOCHS> --num_classes <NUMBER_OF_CLASSES> --batch_size <BATCH_SIZE> --folds <NUMBER_OF_FOLDS> --k <NUMBER_OF_CLUSTER(K-Means)> --lr <FEATURE_EXTRACTOR_LR> <FEATURE_COMPOSER_LR>
-    ```
-- Example of training:
-```bash
-    python3 detrac.py -f torch --train --epochs 1 --num_classes 3 --batch_size 16 --folds 2 --k 2 --lr 0.001 0.001
-```
-- Inference
-    ```bash
-    python detrac.py -f <FRAMEWORK> --infer
-    ```
-
-You can also run the script with both the ```--infer``` and ```--train``` flag simultaneously:
-```bash
-python detrac.py -f <FRAMEWORK> --infer --train [...]
-```
-
-For details regarding the flags, you can use the ```-h / --help``` flag:
-```bash
-python detrac.py -h
-```
 
 ## Routine
 
