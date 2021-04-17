@@ -7,11 +7,11 @@
 1. Go to main folder and install requirements ```pip3 install -r requirements.txt```. This will install all the requirements on your PC that are located in *requirements.txt* folder.
 
 2. Locate to *src* folder and run TensorFlow or PyTorch backend. <br/>
-TensorFlow:
+* TensorFlow:
 ```bash
 python3 detrac.py -f tf
 ```
-PyTorch:
+* PyTorch:
 ```bash
 python3 detrac.py -f torch
 ```
@@ -30,6 +30,7 @@ DeTraC_COVId19
 │       └─── PNEUMONIA
 │       │   └─── PNEUMONIA images
 ```
+You can use this dataset for testing: [Kaggle](https://www.kaggle.com/prashant268/chest-xray-covid19-pneumonia)
 
 4. Run a training script:
     ```bash
