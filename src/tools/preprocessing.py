@@ -6,6 +6,9 @@ import numpy as np
 
 from tqdm import tqdm
 
+import sys
+from loguru import logger
+
 # Preprocessing used for inference using pretrained layers for feature extraction
 
 
@@ -52,7 +55,7 @@ def preprocess_single_image(
             img = tf.keras.applications.imagenet_utils.preprocess_input(img, mode="tf")
     return img
 
-
+@logger.catch
 def preprocess_images(
     dataset_path: str,
     width: int,
@@ -135,6 +138,8 @@ def preprocess_images(
                 labels.append(identity_matrix[class_names.index(folder)])
 
                 file_progress_bar.set_description(f"Loading images from directory {folder}")
+        
+        logger.info(f"Loading images from directory {folder}")
 
     # Convert the features list to a vertical stack array.
     # This gets rid of any array of length 1.
