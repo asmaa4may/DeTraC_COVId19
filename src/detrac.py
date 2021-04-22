@@ -90,11 +90,13 @@ def training(args):
     elif args.framework[0].lower() == "torch" or args.framework[0].lower() == "pytorch":
         # Prompt them to choose a method of computation
         # (In TF, if tensorflow-gpu is installed, this is inferred, though, in Pytorch it is done manually)
-        use_cuda = input("Use CUDA for GPU computation? [Y / N]: ")
+        use_cuda = input("Use CUDA for GPU computation? [Y / N\u0332]: ")
         if use_cuda.lower() == "y" or use_cuda.lower() == "yes":
             use_cuda = True
-        elif use_cuda.lower() == "n" or use_cuda.lower() == "no":
+        else:
             use_cuda = False
+
+        logger.info(f"use cuda: {use_cuda}")
 
         # Train the feature extractor
         detrac_torch.feature_extractor.train_feature_extractor(

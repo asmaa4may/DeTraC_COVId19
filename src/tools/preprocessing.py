@@ -7,7 +7,7 @@ import numpy as np
 from tqdm import tqdm
 
 import sys
-from loguru import logger
+from loguru import logger         
 
 # Preprocessing used for inference using pretrained layers for feature extraction
 

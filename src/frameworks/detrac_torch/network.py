@@ -31,7 +31,6 @@ def set_device(
     returns:
         <tensor or nn> var: The same tensor or model, prepared for computation on the selected device
     """
-    print("Test 1")
     if use_cuda == True:
         if torch.cuda.is_available():
             var = var.cuda()
@@ -49,7 +48,6 @@ class augmented_data(Dataset):
 
     This class inherits from PyTorch's Dataset class, which allows for overloading the initializer and getter to contain a transform operation.
     """
-    print("Test 2")
     def __init__(self, data, transform):
         self.data = data
         self.transform = transform
