@@ -13,6 +13,9 @@ from datetime import datetime
 
 from tqdm import tqdm
 
+import sys
+from loguru import logger
+
 # Function used to choose computation device.
 def set_device(
     var, 
@@ -45,7 +48,6 @@ class augmented_data(Dataset):
 
     This class inherits from PyTorch's Dataset class, which allows for overloading the initializer and getter to contain a transform operation.
     """
-
     def __init__(self, data, transform):
         self.data = data
         self.transform = transform
@@ -74,7 +76,7 @@ class Net(object):
         <string> ckpt_dir
         <list> labels: The text labels to be saved inside the model.
     """
-
+    print("Test 3")
     def __init__(
         self,
         pretrained_model,
@@ -85,7 +87,6 @@ class Net(object):
         labels: list = [],
         lr: float = 0.0
     ):
-
         self.mode = mode
         self.model = pretrained_model
         self.num_classes = num_classes
@@ -148,18 +149,27 @@ class Net(object):
         # The choice will only be given if it is 
         # the feature extractor that it is training.
         if self.mode == "feature_extractor":
-            print("""
-            Choose a mode in which you wish to train:\n
-            1) Shallow-tuning (Fast, but inaccurate)\n
-            2) Deep-tuning (Slow and requires a lot of data, but accurate)\n
-            3) Fine-tuning
-            """)
-
             # User choice
-            self.training_mode = int(input("> "))
-            while self.training_mode < 1 or self.training_mode > 3:
-                print("Choose a mode in which you wish to train:\n1) Shallow-tuning\n2) Deep-tuning\n3) Fine-tuning")
+            while(True): #while loop to ask user for training model
+                print("""
+                        Choose a mode in which you wish to train:\n
+                        1) Shallow-tuning (Fast, but inaccurate)\n
+                        2) Deep-tuning (Slow and requires a lot of data, but accurate)\n
+                        3) Fine-tuning
+                        """)
+
+                while(True): #prompt user to enter a valid number
+                    try: #if valid number is selected, it exits otherwise repeats
+                        self.training_mode = int(input("> "))
+                        break
+                    except ValueError: #handle the exception if it is anything else than int
+                        logger.warning("Please enter an integer")
+
+                if(1 <= self.training_mode <= 3): #check if number is between 1 and 3, if so break 
+                    break
             
+            logger.info(f"training_mode {self.training_mode} selected") #add number to logging
+
             # If the user chose the fine-tuning method, 
             # prepare the layers for freezing and training respectively
             if self.training_mode == 3:
@@ -311,7 +321,6 @@ class Net(object):
         returns:
             <list> loaded_args: The arguments used in the model's checkpoint, used to load the model. 
         """
-        
         # Prompt the user
         prompt = input("Load on GPU or CPU [GPU / CPU]\n")
         while prompt != "GPU" and prompt != "CPU":
@@ -353,7 +362,7 @@ class Net(object):
         """
         Load labels from the model's checkpoint 
         """
-        
+
         checkpoint = torch.load(
             ckpt_path, map_location=lambda storage, loc: storage)
         return checkpoint['labels']
@@ -372,7 +381,6 @@ class Net(object):
             <float> err: The training loss at that step
             <float> acc: The training accuracy at that step
         """
-
         # Set model in train mode
         self.model.train()
 
@@ -504,7 +512,6 @@ class Net(object):
             <bool> save: Whether to save progress or not
             <bool> resume: Whether to resume training or not
         """
-
         if self.cuda == True:
             torch.backends.cudnn.benchmark = True
 
@@ -643,7 +650,6 @@ class Net(object):
         returns:
             <array> prediction
         """
-
         # Disable gradients. We're not training.
         with torch.no_grad():
             # Convert the input data into a tensor if needed
@@ -682,7 +688,6 @@ class Net(object):
         returns:
             <array> pred: NxN array (doesn't use custom classification layer)
         """
-
         # Keep track of the last layer
         last_layer_to_restore = list(self.model.children())[-1]
         last_layer = list(self.model.children())[-1][:-1]
