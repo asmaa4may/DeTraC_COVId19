@@ -5,8 +5,14 @@ from frameworks import detrac_tf, detrac_torch
 import numpy as np
 
 import os
+import sys
+
+from loguru import logger
+logger.add(sys.stderr, format="[{time:HH:mm:ss}] <lvl>{message}</lvl>", filter="my_module", level="INFO")
+logger.add("file.log", level="TRACE", rotation="100 MB")
 
 # Paths where data is stored
+DATA_FOLDER_PATH = "../data"
 INITIAL_DATASET_PATH = "../data/initial_dataset"
 EXTRACTED_FEATURES_PATH = "../data/extracted_features"
 COMPOSED_DATASET_PATH = "../data/composed_dataset"
@@ -84,11 +90,13 @@ def training(args):
     elif args.framework[0].lower() == "torch" or args.framework[0].lower() == "pytorch":
         # Prompt them to choose a method of computation
         # (In TF, if tensorflow-gpu is installed, this is inferred, though, in Pytorch it is done manually)
-        use_cuda = input("Use CUDA for GPU computation? [Y / N]: ")
+        use_cuda = input("Use CUDA for GPU computation? [Y / N\u0332]: ")
         if use_cuda.lower() == "y" or use_cuda.lower() == "yes":
             use_cuda = True
-        elif use_cuda.lower() == "n" or use_cuda.lower() == "no":
+        else:
             use_cuda = False
+
+        logger.info(f"use cuda: {use_cuda}")
 
         # Train the feature extractor
         detrac_torch.feature_extractor.train_feature_extractor(
@@ -202,6 +210,7 @@ def inference(args):
         print(f"Confidence: \n{prediction}")
 
 # Function used to initialize repo with the necessary folders.
+@logger.catch #sends detail errors to logger
 def init_folders(path: str) -> bool:
     """
     Used to initialize folders if there aren't already there
@@ -214,51 +223,54 @@ def init_folders(path: str) -> bool:
     """
 
     if not os.path.exists(path):
-        print(f"{path} doesn't exist. Initializing...")
+        logger.info(f"{path} doesn't exist. Initializing...")
         os.mkdir(path)
         return True
     return False
 
 def main():
+    logger.info("starting main")
     fresh_directories = [
+        init_folders(DATA_FOLDER_PATH),
         init_folders(INITIAL_DATASET_PATH),
         init_folders(EXTRACTED_FEATURES_PATH),
         init_folders(COMPOSED_DATASET_PATH),
         init_folders(GENERAL_MODELS_PATH),
+        init_folders(TF_MODEL_DIR),
         init_folders(TF_MODEL_DETAILS_DIR)
     ]
 
     if all(fresh_directories) == True:
-        print(f"The directories have just been created. Make sure to populate the {INITIAL_DATASET_PATH} with your data.")
+        logger.warning(f"The directories have just been created. Make sure to populate the {INITIAL_DATASET_PATH} with your data.")
         exit(0)
     else:
         if len(os.listdir(INITIAL_DATASET_PATH)) == 0:
-            print(f"Your main data directory ({INITIAL_DATASET_PATH}) is empty. Make sure to populate it before running the script.")
+            logger.warning(f"Your main data directory ({INITIAL_DATASET_PATH}) is empty. Make sure to populate it before running the script.")
             exit(0)
 
     # Choice of framework
     option = args.framework[0].lower()
     if args.framework[0].lower() == "tf" or args.framework[0].lower() == "tensorflow":
         # Use TensorFlow
-        print("\n[Tensorflow Backend]\n")
+        logger.info("[Tensorflow Backend]")
         init_folders(TF_MODEL_DIR)
     elif args.framework[0].lower() == "torch" or args.framework[0].lower() == "pytorch":
         # Use PyTorch
-        print("\n[PyTorch Backend]\n")
+        logger.info("[PyTorch Backend]")
         init_folders(TORCH_CKPT_DIR)
 
     # Mode selection.
     # If no mode is selected, exit
     if args.train == False and args.infer == False:
         # No option = No reason to use the model
-        print("No option selected.")
+        logger.info("No option selected.")
         exit(0)
 
     # If one or both modes were selected
     else:
         # If both the training mode and the inference mode are selected
         if args.train == True and args.infer == True:
-            print("\nPreparing the model for training and inference\n")
+            logger.info("Preparing the model for training and inference")
 
             # Train
             training(args)
@@ -268,13 +280,13 @@ def main():
         else:
             # If only the training mode was selected
             if args.train == True and args.infer == False:
-                print("\nPreparing the model for training\n")
+                logger.info("Preparing the model for training")
 
                 # Train
                 training(args)
             # Otherwise
             elif args.train == False and args.infer == True:
-                print("\nPreparing the model for inference\n")
+                logger.info("Preparing the model for inference")
 
                 # Infer
                 inference(args)
