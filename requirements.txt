@@ -1,8 +1,9 @@
-tqdm
-torch
-torchvision
-tensorflow
-numpy
-matplotlib
-opencv_python
-scikit_learn
+tqdm==4.60.0
+torch==1.8.1
+torchvision==0.9.1
+tensorflow==2.4.1
+numpy==1.19.5
+matplotlib==3.4.1
+opencv_python==4.5.1.48
+scikit_learn==0.24.1
+loguru==0.5.3
