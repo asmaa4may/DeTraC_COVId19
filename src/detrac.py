@@ -121,32 +121,36 @@ def training(args):
             k=k
         )
 
-        # Train feature composer on composed dataset
-        detrac_torch.feature_composer.train_feature_composer(
-            composed_dataset_path=COMPOSED_DATASET_PATH,
-            epochs=num_epochs,
-            batch_size=batch_size,
-            num_classes=feature_composer_num_classes,
-            folds=folds,
-            lr=feature_composer_lr,
-            cuda=use_cuda,
-            ckpt_dir=TORCH_CKPT_DIR
-        )
+        trainingFC = False
+        trainingID = False
 
+        if(trainingFC):
+            # Train feature composer on composed dataset
+            detrac_torch.feature_composer.train_feature_composer(
+                composed_dataset_path=COMPOSED_DATASET_PATH,
+                epochs=num_epochs,
+                batch_size=batch_size,
+                num_classes=feature_composer_num_classes,
+                folds=folds,
+                lr=feature_composer_lr,
+                cuda=use_cuda,
+                ckpt_dir=TORCH_CKPT_DIR
+            )
 
-        clone_folders()
-        detrac_torch.feature_composer.train_feature_composer(
-            composed_dataset_path=INITIAL_DATASET_PATH,
-            epochs=num_epochs,
-            batch_size=batch_size,
-            num_classes=feature_composer_num_classes,
-            folds=folds,
-            lr=feature_composer_lr,
-            cuda=use_cuda,
-            ckpt_dir=TORCH_CKPT_DIR
-        )
+        if(trainingID):
+            clone_folders()
+            detrac_torch.feature_composer.train_feature_composer(
+                composed_dataset_path=INITIAL_DATASET_PATH,
+                epochs=num_epochs,
+                batch_size=batch_size,
+                num_classes=feature_composer_num_classes,
+                folds=folds,
+                lr=feature_composer_lr,
+                cuda=use_cuda,
+                ckpt_dir=TORCH_CKPT_DIR
+            )
 
-        remove_folders()
+            remove_folders()
 
 def clone_folders():
     for root, dirs, files in os.walk(INITIAL_DATASET_PATH):
@@ -158,15 +162,12 @@ def clone_folders():
                 global CLONED_FILES
                 CLONED_FILES.append(clone)
 
-
 def remove_folders():
     for x in range(len(CLONED_FILES)):
         os.system("rm -r "+CLONED_FILES[x])
 
     os.system("rm -r " + COMPOSED_DATASET_PATH)
     os.system("rm -r " + EXTRACTED_FEATURES_PATH)
-
-
 
 # Inference option
 def inference(args):
