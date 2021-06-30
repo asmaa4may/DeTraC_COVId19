@@ -100,26 +100,29 @@ def training(args):
 
         logger.info(f"use cuda: {use_cuda}")
 
-        # Train the feature extractor
-        detrac_torch.feature_extractor.train_feature_extractor(
-            initial_dataset_path=INITIAL_DATASET_PATH,
-            extracted_features_path=EXTRACTED_FEATURES_PATH,
-            epochs=num_epochs,
-            batch_size=batch_size,
-            num_classes=feature_extractor_num_classes,
-            folds=folds,
-            lr=feature_extractor_lr,
-            cuda=use_cuda,
-            ckpt_dir=TORCH_CKPT_DIR
-        )
+        trainingBS = False
+        
+        if(trainingBS):
+            # Train the feature extractor
+            detrac_torch.feature_extractor.train_feature_extractor(
+                initial_dataset_path=INITIAL_DATASET_PATH,
+                extracted_features_path=EXTRACTED_FEATURES_PATH,
+                epochs=num_epochs,
+                batch_size=batch_size,
+                num_classes=feature_extractor_num_classes,
+                folds=folds,
+                lr=feature_extractor_lr,
+                cuda=use_cuda,
+                ckpt_dir=TORCH_CKPT_DIR
+            )
 
-        # Construct the dataset composed using the extracted features
-        construct_composed_dataset.execute_decomposition(
-            initial_dataset_path=INITIAL_DATASET_PATH,
-            composed_dataset_path=COMPOSED_DATASET_PATH,
-            features_path=EXTRACTED_FEATURES_PATH,
-            k=k
-        )
+            # Construct the dataset composed using the extracted features
+            construct_composed_dataset.execute_decomposition(
+                initial_dataset_path=INITIAL_DATASET_PATH,
+                composed_dataset_path=COMPOSED_DATASET_PATH,
+                features_path=EXTRACTED_FEATURES_PATH,
+                k=k
+            )
 
         trainingFC = False
         trainingID = False
