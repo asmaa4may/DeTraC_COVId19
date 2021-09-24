@@ -24,6 +24,8 @@ TORCH_CKPT_DIR = os.path.join(GENERAL_MODELS_PATH, "torch")
 
 TF_MODEL_DETAILS_DIR = os.path.join(GENERAL_MODELS_PATH, TF_MODEL_DIR, "details")
 
+CLONED_FILES = []
+
 # TODO: Document and proofread
 # TODO: Fix / implement save and resume mechanic OR get rid of it (not ideal)
 # TODO: Implement different log mechanic for number of classes and labels (TF)
@@ -98,38 +100,77 @@ def training(args):
 
         logger.info(f"use cuda: {use_cuda}")
 
-        # Train the feature extractor
-        detrac_torch.feature_extractor.train_feature_extractor(
-            initial_dataset_path=INITIAL_DATASET_PATH,
-            extracted_features_path=EXTRACTED_FEATURES_PATH,
-            epochs=num_epochs,
-            batch_size=batch_size,
-            num_classes=feature_extractor_num_classes,
-            folds=folds,
-            lr=feature_extractor_lr,
-            cuda=use_cuda,
-            ckpt_dir=TORCH_CKPT_DIR
-        )
+        trainingBS = False
+        
+        if(trainingBS):
+            # Train the feature extractor
+            detrac_torch.feature_extractor.train_feature_extractor(
+                initial_dataset_path=INITIAL_DATASET_PATH,
+                extracted_features_path=EXTRACTED_FEATURES_PATH,
+                epochs=num_epochs,
+                batch_size=batch_size,
+                num_classes=feature_extractor_num_classes,
+                folds=folds,
+                lr=feature_extractor_lr,
+                cuda=use_cuda,
+                ckpt_dir=TORCH_CKPT_DIR
+            )
 
-        # Construct the dataset composed using the extracted features
-        construct_composed_dataset.execute_decomposition(
-            initial_dataset_path=INITIAL_DATASET_PATH,
-            composed_dataset_path=COMPOSED_DATASET_PATH,
-            features_path=EXTRACTED_FEATURES_PATH,
-            k=k
-        )
+            # Construct the dataset composed using the extracted features
+            construct_composed_dataset.execute_decomposition(
+                initial_dataset_path=INITIAL_DATASET_PATH,
+                composed_dataset_path=COMPOSED_DATASET_PATH,
+                features_path=EXTRACTED_FEATURES_PATH,
+                k=k
+            )
 
-        # Train feature composer on composed dataset
-        detrac_torch.feature_composer.train_feature_composer(
-            composed_dataset_path=COMPOSED_DATASET_PATH,
-            epochs=num_epochs,
-            batch_size=batch_size,
-            num_classes=feature_composer_num_classes,
-            folds=folds,
-            lr=feature_composer_lr,
-            cuda=use_cuda,
-            ckpt_dir=TORCH_CKPT_DIR
-        )
+        trainingFC = False
+        trainingID = False
+
+        if(trainingFC):
+            # Train feature composer on composed dataset
+            detrac_torch.feature_composer.train_feature_composer(
+                composed_dataset_path=COMPOSED_DATASET_PATH,
+                epochs=num_epochs,
+                batch_size=batch_size,
+                num_classes=feature_composer_num_classes,
+                folds=folds,
+                lr=feature_composer_lr,
+                cuda=use_cuda,
+                ckpt_dir=TORCH_CKPT_DIR
+            )
+
+        if(trainingID):
+            clone_folders()
+            detrac_torch.feature_composer.train_feature_composer(
+                composed_dataset_path=INITIAL_DATASET_PATH,
+                epochs=num_epochs,
+                batch_size=batch_size,
+                num_classes=feature_composer_num_classes,
+                folds=folds,
+                lr=feature_composer_lr,
+                cuda=use_cuda,
+                ckpt_dir=TORCH_CKPT_DIR
+            )
+
+            remove_folders()
+
+def clone_folders():
+    for root, dirs, files in os.walk(INITIAL_DATASET_PATH):
+        if dirs:
+            for x in range(len(dirs)):
+                original = str(INITIAL_DATASET_PATH+"/"+dirs[x])   
+                clone = str(INITIAL_DATASET_PATH)+"/"+str(dirs[x])+"_"+str(x+1)
+                os.system("cp -r " + original + " " + clone)
+                global CLONED_FILES
+                CLONED_FILES.append(clone)
+
+def remove_folders():
+    for x in range(len(CLONED_FILES)):
+        os.system("rm -r "+CLONED_FILES[x])
+
+    os.system("rm -r " + COMPOSED_DATASET_PATH)
+    os.system("rm -r " + EXTRACTED_FEATURES_PATH)
 
 # Inference option
 def inference(args):
@@ -293,4 +334,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main() 
